@@ -18,10 +18,9 @@ class Generation:
         for i in range(self.pop_size):
             entry = Entity()
             self.origin.append((entry.rng_dna(), entry.calc_fitness()))
-        print(self.origin)
-        self.heritage.append(self.crossover(self.origin))
+        self.heritage = self.dna_list(self.origin)
 
-    def crossover(self, origin):
+    def dna_list(self, origin):
         temp = []
         for x in origin:
             if x[1] == 1:
@@ -30,3 +29,5 @@ class Generation:
                 temp += x[1] * [x[0]]
         print(len(temp))
         return temp
+
+    #def crossover_by_selection(self, heritage):
