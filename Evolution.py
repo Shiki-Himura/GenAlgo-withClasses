@@ -17,7 +17,10 @@ class Generation:
     def generate_origin(self):
         for i in range(self.pop_size):
             entry = Entity()
-            self.origin.append((entry.rng_dna(), entry.calc_fitness()))
+            entry.rng_dna()
+            entry.calc_fitness()
+            self.origin.append((entry.dna, entry.fitness))
+        print(self.origin)
         self.heritage = self.dna_list(self.origin)
 
     def dna_list(self, origin):
