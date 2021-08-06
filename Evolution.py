@@ -19,18 +19,15 @@ class Generation:
             entry = Entity()
             entry.rng_dna()
             entry.calc_fitness()
-            self.origin.append((entry.dna, entry.fitness))
-        print(self.origin)
+            self.origin.append(entry)
         self.heritage = self.dna_list(self.origin)
 
     def dna_list(self, origin):
         temp = []
         for x in origin:
-            if x[1] == 1:
-                temp.append(x[0])
+            if x.fitness == 1:
+                temp.append(x)
             else:
-                temp += x[1] * [x[0]]
+                temp += x.fitness * [x]
         print(len(temp))
         return temp
-
-    #def crossover_by_selection(self, heritage):
