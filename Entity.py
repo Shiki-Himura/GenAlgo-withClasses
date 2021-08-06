@@ -20,3 +20,9 @@ class Entity:
         for x in range(len(self.target)):
             if self.dna[x] == self.target[x]:
                 self.fitness += 1
+
+    def crossover_by_selection(self, dnaA, dnaB):
+        temp_dna = dnaA.dna[:10]
+        temp_dna += dnaB.dna[10:]
+        self.dna = temp_dna
+    # add mutation and target check
