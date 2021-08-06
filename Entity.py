@@ -17,7 +17,7 @@ class Entity:
 
     def calc_fitness(self):
         fitness = 1
-        for x in range(len(self.dna)):
+        for x in range(len(self.target)):
             if self.dna[x] == self.target[x]:
                 fitness += 1
 

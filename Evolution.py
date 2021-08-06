@@ -10,7 +10,7 @@ class Generation:
         self.heritage = []
         self.pop_size = 2000
         self.mut_rate = 1
-        self.fitness = 0
+        self.fitness = 1
         self.generation = 0
         self.is_Target = False
 
@@ -19,3 +19,14 @@ class Generation:
             entry = Entity()
             self.origin.append((entry.rng_dna(), entry.calc_fitness()))
         print(self.origin)
+        self.heritage.append(self.crossover(self.origin))
+
+    def crossover(self, origin):
+        temp = []
+        for x in origin:
+            if x[1] == 1:
+                temp.append(x[0])
+            else:
+                temp += x[1] * [x[0]]
+        print(len(temp))
+        return temp
