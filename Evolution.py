@@ -29,6 +29,7 @@ class Generation:
     def generate_heritage(self):
         temp_rng = self.dna_list()
         self.gen += 1
+        temp_ent = None
 
         for x in range(self.pop_size):
             entry = Entity.Entity()
@@ -41,10 +42,11 @@ class Generation:
                 print(entry.dna)
                 self.is_Target = True
                 exit()
+            temp_ent = entry.dna
         self.origin = []
         self.origin = self.heritage
         self.heritage = []
-        print(f"Generation: {self.gen}")
+        print(f"Best: {temp_ent} Generation: {self.gen}")
 
     def dna_list(self):
         temp = []
