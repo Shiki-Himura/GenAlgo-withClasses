@@ -2,6 +2,7 @@
 import Entity
 from random import choice as rng
 
+
 # base class which holds information about everything connected to a DNA entity
 
 
@@ -13,6 +14,7 @@ class Generation:
         self.mut_rate = 1
         self.fitness = 1
         self.is_Target = False
+        self.gen = 0
 
     def generate_origin(self):
         temp = []
@@ -26,6 +28,7 @@ class Generation:
 
     def generate_heritage(self):
         temp_rng = self.dna_list()
+        self.gen += 1
 
         for x in range(self.pop_size):
             entry = Entity.Entity()
@@ -41,6 +44,7 @@ class Generation:
         self.origin = []
         self.origin = self.heritage
         self.heritage = []
+        print(f"Generation: {self.gen}")
 
     def dna_list(self):
         temp = []
