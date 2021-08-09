@@ -1,7 +1,9 @@
 #imports
 from random import choice as rng
+from random import randint
 
 # class which holds information for every single entity
+import Evolution
 
 
 class Entity:
@@ -17,6 +19,7 @@ class Entity:
             self.dna += rng(self.dna_pool)
 
     def calc_fitness(self):
+        self.fitness = 1
         for x in range(len(self.target)):
             if self.dna[x] == self.target[x]:
                 self.fitness += 1
@@ -24,5 +27,14 @@ class Entity:
     def crossover_by_selection(self, dnaA, dnaB):
         temp_dna = dnaA.dna[:10]
         temp_dna += dnaB.dna[10:]
-        self.dna = temp_dna
-    # add mutation and target check
+        self.dna = self.mutation(temp_dna)
+
+    def mutation(self, temp_dna):
+        temp = ""
+        for char in temp_dna:
+            mutated = randint(0, 100)
+            if mutated < 1:
+                temp += rng(self.dna_pool)
+            else:
+                temp += char
+        return temp

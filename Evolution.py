@@ -1,5 +1,5 @@
 # imports
-from Entity import Entity
+import Entity
 from random import choice as rng
 
 # base class which holds information about everything connected to a DNA entity
@@ -12,28 +12,41 @@ class Generation:
         self.pop_size = 2000
         self.mut_rate = 1
         self.fitness = 1
-        self.generation = 0
         self.is_Target = False
+        self.best_match = ""
+        self.gen = 0
 
     def generate_origin(self):
-        entry = Entity()
-        temp_origin = []
+        temp = []
         for i in range(self.pop_size):
+            entry = Entity.Entity()
             entry.rng_dna()
             entry.calc_fitness()
-            self.origin.append(entry)
-        self.heritage = self.dna_list(self.origin)
+            temp.append(entry)
+        self.origin = temp
+        self.generate_heritage()
+
+    def generate_heritage(self):
+        temp_rng = self.dna_list()
 
         for x in range(self.pop_size):
-            dnaA = rng(self.heritage)
-            dnaB = rng(self.heritage)
+            entry = Entity.Entity()
+            dnaA = rng(temp_rng)
+            dnaB = rng(temp_rng)
             entry.crossover_by_selection(dnaA, dnaB)
-            temp_origin.append(entry)
-        self.origin = temp_origin
+            self.heritage.append(entry)
+            entry.calc_fitness()
+            if entry.dna == entry.target:
+                print(entry.dna)
+                self.is_Target = True
+                exit()
+        self.origin = []
+        self.origin = self.heritage
+        self.heritage = []
 
-    def dna_list(self, origin):
+    def dna_list(self):
         temp = []
-        for x in origin:
+        for x in self.origin:
             if x.fitness == 1:
                 temp.append(x)
             else:
