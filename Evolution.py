@@ -13,8 +13,6 @@ class Generation:
         self.mut_rate = 1
         self.fitness = 1
         self.is_Target = False
-        self.best_match = ""
-        self.gen = 0
 
     def generate_origin(self):
         temp = []
