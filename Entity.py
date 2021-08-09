@@ -17,7 +17,6 @@ class Entity:
         for i in range(len(self.target)): self.dna += rng(self.dna_pool)
 
     def calc_fitness(self):
-        self.fitness = 1
         for x in range(len(self.target)):
             if self.dna[x] == self.target[x]:
                 self.fitness += 1
